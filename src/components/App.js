@@ -38,7 +38,7 @@ const App = (props) => {
       <h2>Jeopardy!</h2>
       <Header />
       <AppRoute path='/categories' location={props.location}>
-        <CategoryList />
+        <CategoryList categories={props.categories} />
       </AppRoute>
       <AppRoute path='/category' location={props.location}>
         <Category />
