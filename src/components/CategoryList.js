@@ -7,7 +7,7 @@ const CategoryList = (props) => {
     return (
       props.categories.map((category) => {
         return (
-          <Link to="/category"><h4>{category.title}</h4></Link>
+          <Link to="/category" onClick={() => props.pickCategory(category)} key={category.title}><h4 className="capitalize">{category.title}</h4></Link>
         )
       })
     )

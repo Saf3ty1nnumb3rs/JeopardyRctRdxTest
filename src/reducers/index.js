@@ -1,3 +1,4 @@
+import { combineReducers } from 'redux';
 import * as types from '../actions/actionTypes';
 
 function categories(state = [], action) {
@@ -9,4 +10,13 @@ function categories(state = [], action) {
   }
 }
 
-export default categories;
+function category(state = {}, action) {
+  switch (action.type) {
+    case types.PICK_CATEGORY:
+      return action.category;
+    default:
+      return state;
+  }
+}
+
+export default combineReducers({ categories, category });

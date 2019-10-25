@@ -6,3 +6,11 @@ export function setCategories(categories) {
     categories
   }
 }
+
+export function pickCategory(category) {
+  console.log('Action', category);
+  return {
+    type: actions.PICK_CATEGORY,
+    category
+  }
+}

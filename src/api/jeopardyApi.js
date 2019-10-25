@@ -14,6 +14,11 @@ export function getCategoriesByCount(count) {
   return get(`categories?count=${count}`);
 }
 
+export function getClues(id) {
+  configureHttpHeaders(axios);
+
+  return get(`clues?category=${id}`)
+}
 const get = async (url) => {
   try {
     const res = await axios.get(`${baseUrl}${url}`);
@@ -24,5 +29,6 @@ const get = async (url) => {
 };
 
 export default {
-  getCategoriesByCount
+  getCategoriesByCount,
+  getClues
 }

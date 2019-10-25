@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import { Container } from 'react-bootstrap';
 import { getCategoriesByCount } from '../api/jeopardyApi';
-import { setCategories } from '../actions';
+import { setCategories, pickCategory } from '../actions';
+import { useApi } from '../hooks/useApi.js';
 
 import Header from './Header';
 import AppRoute from './AppRoute';
@@ -11,51 +13,46 @@ import CategoryList from './CategoryList';
 
 const App = (props) => {
   const { saveCategories } = props;
-
+  const [response, setResponse] = useState([]);
   // custom hook for api calls, explore making more dynamic later
-  const useApi = (api, params) => {
-    const [response, setResponse] = useState([]);
-    useEffect(() => {
-      async function apiCall() {
-        const res = await api(params);
-        setResponse(res);
-      }
-      apiCall();
-    }, [api, params]);
-    return response;
-  }
 
-  const categories = useApi(getCategoriesByCount, 20);
+  const categories = useApi(getCategoriesByCount, 20, response, setResponse);
 
   useEffect(() => {
     if (props.categories.length < 1) {
       saveCategories(categories);
     }
   }, [categories, saveCategories, props.categories]);
-
   return (
     <div>
-      <h2>Jeopardy!</h2>
-      <Header />
-      <AppRoute path='/categories' location={props.location}>
-        <CategoryList categories={props.categories} />
-      </AppRoute>
-      <AppRoute path='/category' location={props.location}>
-        <Category />
-      </AppRoute>
+      <div className="trebek" />
+      <div className="flex-head">
+        <div className="logo" />
+        <Header />
+      </div>
+      <Container>
+        <AppRoute path='/categories' location={props.location}>
+          <CategoryList categories={props.categories} pickCategory={props.pickMainCategory} />
+        </AppRoute>
+        <AppRoute path='/category' location={props.location}>
+          <Category />
+        </AppRoute>
+      </Container>
     </div>
+
   );
 };
 
 function mapStateToProps(state) {
   return {
-    categories: state
+    categories: state.categories
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    saveCategories: (categories) => dispatch(setCategories(categories))
+    saveCategories: (categories) => dispatch(setCategories(categories)),
+    pickMainCategory: (category) => dispatch(pickCategory(category))
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(App);

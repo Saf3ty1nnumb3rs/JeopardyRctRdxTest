@@ -5,6 +5,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import rootReducer from './reducers';
 import App from './components/App';
+import './index.scss';
 
 const store = createStore(rootReducer);
 ReactDOM.render(

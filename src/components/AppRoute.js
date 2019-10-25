@@ -1,7 +1,6 @@
 import React from 'react';
 
 const AppRoute = (props) => {
-  console.log(props);
   return (
     <>
       {props.location && props.location.pathname.includes(props.path) &&
