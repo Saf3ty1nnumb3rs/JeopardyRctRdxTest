@@ -13,9 +13,9 @@ const Clue = (props) => {
 
   return (
     <div className="clue">
-      <h4 className={`${val} card`} onClick={() => setReveal({ ...reveal, value: false, question: true })}><div>{value || 'unknown'}</div></h4>
-      <h5 className={`${ques} card`} onClick={() => { setReveal({ ...reveal, question: false, answer: true }) }}><div>{question}</div></h5>
-      <h5 className={`${ans} card`} onClick={() => { setReveal({ ...reveal, value: true, answer: false }) }}><div>{answer}</div></h5>
+      <h4 className={`${val} card val`} onClick={() => setReveal({ ...reveal, value: false, question: true })}><div>{value || 'unknown'}</div></h4>
+      <h5 className={`${ques} card question`} onClick={() => { setReveal({ ...reveal, question: false, answer: true }) }}><div>{question}</div></h5>
+      <h5 className={`${ans} card answer`} onClick={() => { setReveal({ ...reveal, value: true, answer: false }) }}><div>{answer}</div></h5>
     </div>
   );
 };

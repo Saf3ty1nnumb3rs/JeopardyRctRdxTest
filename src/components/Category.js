@@ -4,7 +4,7 @@ import Clue from './Clue';
 import { getClues } from '../api/jeopardyApi';
 import { useApi } from '../hooks/useApi.js';
 
-const Category = (props) => {
+export const Category = (props) => {
   const [response, setResponse] = useState([]);
   const [clueList, setClues] = useState([]);
 

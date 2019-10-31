@@ -11,7 +11,7 @@ import Category from './Category';
 import CategoryList from './CategoryList';
 
 
-const App = (props) => {
+export const App = (props) => {
   const { saveCategories } = props;
   const [response, setResponse] = useState([]);
   // custom hook for api calls, explore making more dynamic later
@@ -30,7 +30,7 @@ const App = (props) => {
         <div className="logo" />
         <Header />
       </div>
-      <Container>
+      <Container className="content">
         <AppRoute path='/categories' location={props.location}>
           <CategoryList categories={props.categories} pickCategory={props.pickMainCategory} />
         </AppRoute>
